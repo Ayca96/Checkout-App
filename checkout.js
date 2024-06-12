@@ -57,7 +57,9 @@ products.addEventListener("click",(e)=>{
 
 
   if(e.target.classList.contains("fa-plus")){
-    document.getElementById("quantity").textContent++
+    //? static olarak kullanirsak hangi + butonuna basilirsa ilk quantity(miktar) artar.
+    //document.getElementById("quantity").textContent++
+    e.target.previousElementSibling.textContent++
   }
 
 })
