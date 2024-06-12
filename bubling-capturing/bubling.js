@@ -45,6 +45,6 @@ document.querySelector("form").onclick = function (event) {
 
 //! event.stopPropagation().
 
-document.querySelector("div").onclick = function (event) {
-  event.stopPropagation()
-}
+// document.querySelector("div").onclick = function (event) {
+//   event.stopPropagation()
+// }
