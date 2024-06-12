@@ -16,6 +16,11 @@
 //   })
 // })
 
+//! Constant
+const FREE_SHIPPING_LIMIT = 3000
+const SHIPPING_PRICE = 25.99;
+const TAX_RATE = 0.18;
+
 //? Selectors
 
 const deleteAllBtn = document.querySelector(".delete-div .fa-trash-can");
@@ -86,11 +91,26 @@ const calculatePrice = (btn) => {
 
 const totalPrice = () =>{
   const prices = document.querySelectorAll("#product-price");
-  prices.forEach((price)=>{
-    console.log(price.textContent);
-  })
+ // prices.forEach((price)=>console.log(price.textContent));
+  const total = [...prices].reduce((sum,price)=> sum + Number(price.textContent) ,0)
+  //console.log(total);
+  const shippingPrice = total >= FREE_SHIPPING_LIMIT ? 0 : SHIPPING_PRICE; // ternary ile condition tanimladik. 
+  const interimPrice = total + shippingPrice;
+  const tax = interimPrice * TAX_RATE;
+  const sum = total + tax + shippingPrice;
+
+  //! DOM'a sonuclari yazdir.
+
+  const selectedPrice = document.querySelector("#selected-price")
+  selectedPrice.textContent = total.toFixed(2);
+
+  document.getElementById("shipping").textContent = shippingPrice.toFixed(2);
+  document.getElementById("tax").textContent = tax.toFixed(2);
+  document.getElementById("total").textContent = sum.toFixed(2);
+
 }
 
 window.addEventListener("load", ()=>{
   totalPrice()
 })
+
